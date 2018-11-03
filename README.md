@@ -28,7 +28,7 @@ Other Notes:
 . . Notes . .
 
 Project Team :
-Team Member 1 Kanna 
-Team Member 2 Jennifer 
+Team Member 1 Kanna Lakshmanan
+Team Member 2 Jennifer Lara
 Team Member 3 Lauren Voepel
 Team Member 4 Rahul Marathe
