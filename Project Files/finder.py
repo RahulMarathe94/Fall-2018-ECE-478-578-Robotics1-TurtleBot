@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
 '''
-rotates towards a face location provided by the camera
+rotates the robot towards a face location provided by the camera
+Multiple faces result in the robot being immobile
+if the robot senses a colision while rotating it backs up
 '''
 
-# A very basic TurtleBot script that turns LED1 red or green depending on a bumper event
 
 import rospy
 import time
@@ -100,6 +101,7 @@ noise = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=10)
 move = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
 rospy.Subscriber("/mobile_base/events/bumper",BumperEvent,BumperEventCallback)
 rospy.Subscriber("face_location",Int32,faceCallback)
+#rospy.Subscriber("faces",Int32)
 
 
 move_cmd = Twist ( )
