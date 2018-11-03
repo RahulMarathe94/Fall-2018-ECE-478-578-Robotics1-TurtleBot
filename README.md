@@ -22,11 +22,11 @@ ex: OpenCv3 - https://opencv.org/opencv-3-3.html
 ex: ROS Indigo - http://wiki.ros.org/indigo
 
 Hardware:
-Kobuki Turtle Bot Base:
+Kobuki Turtle Bot Base: /n
 The base is a Turtlebot 2i built upon a Kobuki base which has two motorized wheels for mobility. It also has several built-in sensors including a bumper along the front half of the robot which alerts the robot of collisions, drop sensors in both wheels to signal changes in terrain, cliff sensors to signal when the robot is about to drop off a ledge, and a gyro sensor for navigation.
 These sensors serve as inputs to the Bot and can be intergated together.
 
-Kinect Camera
+Kinect Camera: /n
 Apart from the Kobuki base, the Turtlebot system also includes a 3D camera with built in depth perception mounted to the front of the base. This can be interfaced using premade ROS software to provide vision to the robot. For our purposes, this will be integrated using 
 
 To run the robot, a computer must be connected to it via a USB3 cable. To allow for mobility of the base, a battery is required to run the computer wirelessly. From there another computer can SSH into the computer for remote execution of code
