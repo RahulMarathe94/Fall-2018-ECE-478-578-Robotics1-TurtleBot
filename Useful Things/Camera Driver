@@ -9,3 +9,9 @@ roslaunch turtlebot_bringup minimal.launch
 //Launch Camera
 roslaunch  astra_launch astra.launch
 
+//In order to view camera images
+roslaunch turtlebot_rviz_launchers view_robot.launch --screen
+
+rosrun image_view image_view image:=/camera/rgb/image_raw
+
+
