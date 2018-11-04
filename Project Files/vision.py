@@ -17,10 +17,14 @@ Program for image processing on robot.
 Converts camera image to OpenCV format
 Detects faces and symbols in image
 '''
+kernelOpen=numpy.ones((5,5))
+kernelClose=numpy.ones((20,20))
 
 global lowerBound, upperBound
-lowerBound=np.array([33,80,40])
-upperBound=np.array([102,255,255])
+lowerBound=numpy.array([33,80,40])
+upperBound=numpy.array([102,255,255])
+
+
 
 #load and mask templates
 #crecent shape
@@ -81,8 +85,13 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 
 
 class image_converter:
+
+   
     
     def __init__(self):
+
+
+
         self.image_pub = rospy.Publisher("cv_image",Image, queue_size=10)
         self.face_pub = rospy.Publisher("faces",Int32, queue_size=10)
         self.loc_pub = rospy.Publisher("face_location", Int32, queue_size=10)  
@@ -92,6 +101,10 @@ class image_converter:
         self.image_sub = rospy.Subscriber("/camera/rgb/image_raw",Image,self.callback)
 
     def callback(self,data):
+        found = (0,0,0,0,0,0)
+        found = list(found)
+        names = ("moon", "spin", "C", "bolt", "A", "H")
+        names = list(names)
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
@@ -107,7 +120,7 @@ class image_converter:
             minSize=(30,30)
             #flags = cv2.CV_HAAR_SCALE_IMAGE
             )
-        print("found {0} faces!".format(len(faces)))
+        #print("found {0} faces!".format(len(faces)))
         face_num = int(len(faces))
         self.face_pub.publish(face_num)
 
@@ -125,7 +138,7 @@ class image_converter:
         #       pass    # no display
 
            #convert BGR to HSV
-        imgHSV= cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
+        imgHSV= cv2.cvtColor(cv_image,cv2.COLOR_BGR2HSV)
         
         # create the Mask
         mask=cv2.inRange(imgHSV,lowerBound,upperBound)
@@ -181,7 +194,8 @@ class image_converter:
 
                 #draw contours around item that looks like it may be a fit
                 cnt = conts[i]
-                cv2.drawContours(img, [cnt], 0, (0,255,0), 6)
+                cv2.drawContours(cv_image, [cnt], 0, (0,255,0), 6)
+                
 
         
         #To know we have a match for sure we check if we've seen item 50 times
