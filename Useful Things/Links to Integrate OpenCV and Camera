@@ -4,3 +4,33 @@ so it isn't terribly important that we understand everything happening under the
 
 http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython
 http://wiki.ros.org/vision_opencv
+
+The idea behind this code used this project as a base, but no code was taken from it.
+http://cstwiki.wtb.tue.nl/index.php?title=Embedded_Motion_Control_2013_Group_11#Camera_Node
+
+Makes it easier is to mask out everything but the color of the arrow and then use edge
+and corner detection on that shape to recognize the arrow. 
+https://stackoverflow.com/questions/23898981/arrow-recognition-in-video
+
+https://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/
+
+he only issue is that the templates are bound by scale so we would need to iterate over multiple scales of our templates 
+to find what we want. It also has the drawback of being orientation specific, meaning that if the image is tilted it could 
+miss a symbol being given. Solution was to hold image steady.
+https://www.pyimagesearch.com/2015/01/26/multi-scale-template-matching-using-python-opencv/
+
+Two sign detector programs:
+https://github.com/Corey255A1/BasicPythonOpenCVTemplateMatch/blob/master/SignDetector/SignDetector.py
+
+https://github.com/nikgens/TankRobotProject/blob/master/signRecognition/signRecognition.py
+
+Publication comparing symbol recognition algorithms:
+https://publications.cms.bgu.tum.de/theses/2018_Stoitchkov_Vilgertshofer.pdf
+
+Cascade classification seems like the most accurate, but it requires training with thousands of images. 
+A good compromise would be contour detection. The major issue with contour detection is the lack of recognition
+if the object is being touched by another object, but if the symbol is on a sheet of paper then it should be easily distinguishable.
+
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_contours/py_contours_begin/py_contours_begin.html
+
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_contours/py_contours_more_functions/py_contours_more_functions.html?highlight=matchshapes
