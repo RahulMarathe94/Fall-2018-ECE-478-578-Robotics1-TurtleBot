@@ -1,0 +1,6 @@
+To integrate the OpenCV program with ROS, cv_bridge must be used. This is because ROS is RGB and openCV is BGR. 
+There are other differences between file formats, but the conversions are handled through simple function calls 
+so it isn't terribly important that we understand everything happening under the hood.
+
+http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython
+http://wiki.ros.org/vision_opencv
