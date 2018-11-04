@@ -1,10 +1,22 @@
 ROS Tutorials (http://wiki.ros.org/ROS/Tutorials)
     Important information for how to implement subscribers and publishers
+For Moving the Base
+    We started on base movement by looking at code provided by the turtlebot website and code that was installed with the 
+    ROS Kinetic Turtlebot modules. In particular, we used the built in teleop program to verify the functionality of all of
+    the Kobuki base wheels.
+
 For Computer Vision
-    Used python libraries to integrate facial recognition and for the camera to have symbol detection, we used opencv functions. An algorithm involving color and contour detection was decided on. To help reduce false positives, it was decided that a single, bright color would be chosen for the symbols used. Then everything but this color was masked out, leaving white blocks of what could be symbols. The findContours() function was then used on these masked images to outline their shapes. These contour outputs were then matched using matchContours() against the contours of a template image made for each symbol. This means that the system is still limited by needing to use the specific symbols that have templates, but it is robust enough to recognize these symbols regardless of size or orientation. 
+    Used python libraries to integrate facial recognition and for the camera to have symbol detection, we used opencv functions. 
+    An algorithm involving color and contour detection was decided on. To help reduce false positives, it was decided that a single, 
+    bright color would be chosen for the symbols used. Then everything but this color was masked out, leaving white blocks of what could 
+    be symbols. The findContours() function was then used on these masked images to outline their shapes. These contour outputs were then
+    matched using matchContours() against the contours of a template image made for each symbol. This means that the system is still
+    limited by needing to use the specific symbols that have templates, but it is robust enough to recognize these symbols regardless
+    of size or orientation. 
 Dynamixel Wizard for Servos
-  Package for controllers (wiki.ros.org/dynamixel_controller). Need to make a new catkin workspace for package to run. This package needs to be run before running launch files given (my_dynamixel_tutorial.tar.gz).
-Used (https://github.com/mlherd/jimmy) as a place to get an idea of how to move the servos. 
+  Package for controllers (wiki.ros.org/dynamixel_controller). Need to make a new catkin workspace for package to run. 
+  This package needs to be run before running launch files given (my_dynamixel_tutorial.tar.gz). Used (https://github.com/mlherd/jimmy)
+  as a place to get an idea of how to move the servos. 
     
 
   
