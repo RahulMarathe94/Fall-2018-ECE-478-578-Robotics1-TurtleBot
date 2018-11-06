@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 '''
-rotates the robot towards a face location provided by the camera
+rotates the robot towards a symbol location provided by the camera
 
 if the robot senses a colision while rotating it backs up
 '''
@@ -26,19 +26,22 @@ def symbolCallback(data):
 	time_move = time.time()
 	if (symbol == 'spin') :
 		move_cmd.linear.x = 0
-		move_cmd.angular.z = -0.5
-		time_dance = time.time() + 3
+		move_cmd.angular.z = -1
+		time_move = time.time() + 8
 		while(time.time() < time_move):
 			move.publish(move_cmd)
 		print("spin!")
 	elif (symbol == 'H') :
 		move_cmd.linear.x = 0
-		move_cmd.angular.z = 0.5
-		print("turning right!")
+		move_cmd.angular.z = 0
+		print("Halt!")
 	elif (symbol == 'C') :
 		move_cmd.linear.x = 0.2
 		move_cmd.angular.z = 0
 		print("Charge!")
+		time_move = time.time() + 3
+		while(time.time() < time_move):
+			move.publish(move_cmd)
 	elif (symbol == 'moon') :
 		time_move = time.time() + 1
 		move_cmd.linear.x = 0.2
@@ -46,7 +49,7 @@ def symbolCallback(data):
 		print("dance!")
 		while(time.time() < time_move):
 			move.publish(move_cmd)
-		time_dance = time.time() + 1
+		time_move = time.time() + 1
 		move_cmd.linear.x = -0.2
 		move_cmd.angular.z = -0.5
 		while(time.time() < time_move):
@@ -57,6 +60,9 @@ def symbolCallback(data):
 		move_cmd.linear.x = -0.2
 		move_cmd.angular.z = 0
 		print("Avoid!")
+		time_move = time.time() + 3
+		while(time.time() < time_move):
+			move.publish(move_cmd)
 	elif (symbol == 'bolt') :
 		move_cmd.linear.x = 0.2
 		move_cmd.angular.z = 0
