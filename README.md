@@ -1,16 +1,16 @@
 # Fall-2018-ECE-478-578-Robotics1-TurtleBot
-#**Intelligent Robotics Lab**
+# **Intelligent Robotics Lab**
 
-##Portland State University
+## Portland State University
 
-##Project Name:TurtleBot
+## Project Name:TurtleBot
 
-###Project Description:
+### Project Description:
 
 
-#####Project Status:
+##### Project Status:
 
-#####Project Goals: <br />
+##### Project Goals: <br />
 Programming one of the robotics lab’s turtlebots for our project. <br /> The robot was expected to be able to have basic directional movements, simple gestural movements, and vision capabilities such as facial detection. 
 
 ex: Build robot base - 10.10.2018 (done) <br />
