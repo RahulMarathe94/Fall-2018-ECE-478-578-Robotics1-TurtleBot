@@ -1,0 +1,128 @@
+head_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: head
+    joint_speed: 1.0
+    motor:
+        id: 1
+        init: 0
+        min: 0
+        max: 1023
+        
+neck_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: neck
+    joint_speed: 1.0
+    motor:
+        id: 2
+        init: 0
+        min: 241
+        max: 785
+        
+right_shoulder_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_shoulder
+    joint_speed: 1.0
+    motor:
+        id: 3
+        init: 0
+        min: 0
+        max: 1023
+
+left_shoulder_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: left_shoulder
+    joint_speed: 1.0
+    motor:
+        id: 4
+        init: 0
+        min: 247
+        max: 1023
+        
+left_upper_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: left_upper
+    joint_speed: 1.0
+    motor:
+        id: 5
+        init: 0
+        min: 360
+        max: 668
+left_lower_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: left_lower
+    joint_speed: 1.0
+    motor:
+        id: 6
+        init: 0
+        min: 206
+        max: 819
+        
+left_elbow_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: left_elbow
+    joint_speed: 1.0
+    motor:
+        id: 7
+        init: 0
+        min: 360
+        max: 668
+        
+right_upper_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_upper
+    joint_speed: 1.0
+    motor:
+        id: 8
+        init: 0
+        min: 0
+        max: 1023
+
+right_lower_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_lower
+    joint_speed: 1.0
+    motor:
+        id: 9
+        init: 0
+        min: 0
+        max: 1023
+        
+right_elbow_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_elbow
+    joint_speed: 1.0
+    motor:
+        id: 10
+        init: 0
+        min: 360
+        max: 668
