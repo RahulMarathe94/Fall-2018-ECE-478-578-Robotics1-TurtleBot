@@ -11,7 +11,7 @@ Project Description:
 Project Status:
 
 Project Goals:
-Programming one of the robotics lab’s turtlebots for our project. The robot was expected to be able to have basic directional movements, simple gestural movements, and vision capabilities such as facial detection. 
+Programming one of the robotics lab’s turtlebots for our project. <br /> The robot was expected to be able to have basic directional movements, simple gestural movements, and vision capabilities such as facial detection. 
 
 ex: Build robot base - 10.10.2018 (done)
 ex : Face Detection with OpenCv - 20.10.2018 (in progress)
@@ -23,7 +23,7 @@ ex: ROS Indigo - http://wiki.ros.org/indigo
 
 Hardware:
 Kobuki Turtle Bot Base:
-The base is a Turtlebot 2i built upon a Kobuki base which has two motorized wheels for mobility. It also has several built-in sensors including a bumper along the front half of the robot which alerts the robot of collisions, drop sensors in both wheels to signal changes in terrain, cliff sensors to signal when the robot is about to drop off a ledge, and a gyro sensor for navigation.
+The base is a Turtlebot 2i built upon a Kobuki base which has two motorized wheels for mobility. <br /> It also has several built-in sensors including a bumper along the front half of the robot which alerts the robot of collisions, drop sensors in both wheels to signal changes in terrain, cliff sensors to signal when the robot is about to drop off a ledge, and a gyro sensor for navigation.
 These sensors serve as inputs to the Bot and can be intergated together.
 
 Kinect Camera:
@@ -39,8 +39,8 @@ The HR-OS1 is a small humanoid robot which utilizes several Dynamic Cell servos 
 Other Notes:
 . . Notes . .
 
-Project Team :
-Team Member 1 Kanna Lakshmanan
-Team Member 2 Jennifer Lara
-Team Member 3 Lauren Voepel
+Project Team : <br />
+Team Member 1 Kanna Lakshmanan <br />
+Team Member 2 Jennifer Lara <br />
+Team Member 3 Lauren Voepel <br />
 Team Member 4 Rahul Marathe
