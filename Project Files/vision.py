@@ -110,7 +110,7 @@ class image_converter:
         (rows,cols,channels) = cv_image.shape
         
         gray = cv2.cvtColor(cv_image, cv2.COLOR_BGR2GRAY)
-        #cv2.imshow("gray window", gray)
+       #cv2.imshow("gray window", gray)
         faces = faceCascade.detectMultiScale(
             gray, scaleFactor=1.1,
             minNeighbors=5,
@@ -139,7 +139,7 @@ class image_converter:
         
         # create the Mask
         mask=cv2.inRange(imgHSV,lowerBound,upperBound)
-        cv2.imshow("mask",mask)
+     #   cv2.imshow("mask",mask)
         
         
         #morphology to reduce noice
@@ -148,7 +148,7 @@ class image_converter:
         maskFinal=maskClose
 
         
-        cv2.imshow("maskFinal",maskFinal)
+     #   cv2.imshow("maskFinal",maskFinal)
         
         
         #RETR_EXTERNAL Retrieves only the extreme outer contour
@@ -175,7 +175,7 @@ class image_converter:
             values = (moonFound, spinFound, cryFound, boltFound, angerFound, happyFound)
             ret = min(values)
             #check if item with highest match is at least within 0.1 similarity
-            if(ret < 0.1):
+            if(ret < 0.15):
                 #if yes then increment the occurances for the item with the highest similarity
                 smallest = values.index(ret)
                 found[smallest] = found [smallest] + 1
@@ -198,7 +198,7 @@ class image_converter:
         #To know we have a match for sure we check if we've seen item 50 times
         #this also prevents the log from being spammed with 500 outputs
         largest = max(found)
-        if(largest > 10):
+        if(largest > 15):
             print("we found: ", names[found.index(largest)])
             self.symbol_pub.publish(names[found.index(largest)])
             found = (0,0,0,0,0,0)
@@ -206,7 +206,7 @@ class image_converter:
         
         
         cv2.waitKey(3)
-        cv2.imshow("Image window", cv_image)
+        #cv2.imshow("Image window", cv_image)
         try:
             self.image_pub.publish(self.bridge.cv2_to_imgmsg(cv_image, "bgr8"))
         except CvBridgeError as e:

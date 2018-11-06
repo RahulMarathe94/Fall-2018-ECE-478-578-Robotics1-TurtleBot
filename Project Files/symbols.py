@@ -18,55 +18,127 @@ from kobuki_msgs.msg import Led
 from kobuki_msgs.msg import Sound
 
 go = True
-
+light = rospy.Publisher('/mobile_base/commands/led1', Led, queue_size=10)
+light2 = rospy.Publisher('/mobile_base/commands/led2', Led, queue_size=10)
+noise = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=10)
 
 def symbolCallback(data):
 	symbol = data.data
 	time_stop = time.time() + 5
 	time_move = time.time()
 	if (symbol == 'spin') :
+		print("spin!")
+		noise.publish(3)	
+		light.publish(1)
+		light2.publish(1)	
 		move_cmd.linear.x = 0
 		move_cmd.angular.z = -1
 		time_move = time.time() + 8
 		while(time.time() < time_move):
 			move.publish(move_cmd)
-		print("spin!")
+		noise.publish(3)
+		light.publish(0)
+		light2.publish(0)
 	elif (symbol == 'H') :
+		print("Halt!")
+		noise.publish(3)
+		light.publish(2)
+		light2.publish(2)
 		move_cmd.linear.x = 0
 		move_cmd.angular.z = 0
-		print("Halt!")
+		time_move = time.time() + 3
+		while(time.time() < time_move):
+			move.publish(move_cmd)
+		noise.publish(3)
+		light.publish(0)
+		light2.publish(0)
 	elif (symbol == 'C') :
-		move_cmd.linear.x = 0.2
+		print("Charge!")		
+		move_cmd.linear.x = 0.8
 		move_cmd.angular.z = 0
-		print("Charge!")
+		noise.publish(2)		
+		light.publish(1)
+		light2.publish(1)
 		time_move = time.time() + 3
 		while(time.time() < time_move):
 			move.publish(move_cmd)
+		noise.publish(2)
+		light.publish(0)
+		light2.publish(0)
 	elif (symbol == 'moon') :
-		time_move = time.time() + 1
+		print("dance!")		
+		noise.publish(5)
+		light.publish(1)
+		light2.publish(3)		
+		time_move = time.time() + 3
 		move_cmd.linear.x = 0.2
-		move_cmd.angular.z = 0.5
-		print("dance!")
+		move_cmd.linear.z = -0.5
 		while(time.time() < time_move):
 			move.publish(move_cmd)
-		time_move = time.time() + 1
 		move_cmd.linear.x = -0.2
-		move_cmd.angular.z = -0.5
+		move_cmd.linear.z = 0.5
+		#move_cmd.angular.z = 0.5
+		
 		while(time.time() < time_move):
 			move.publish(move_cmd)
-		move_cmd.linear.x = 0.1
+		time_move = time.time() + 3
+		light.publish(2)
+		light2.publish(1)
+		move_cmd.linear.x = 0
+		move_cmd.angular.z = -1
+		light.publish(3)
+		light2.publish(2)
+		while(time.time() < time_move):
+			move.publish(move_cmd)
+		light.publish(1)
+		light2.publish(3)
+		move_cmd.linear.x = 0.2
+		#move_cmd.linear.y = -0.2
 		move_cmd.angular.z = -0.5
+		while(time.time() < time_move):
+			move.publish(move_cmd)		
+		light.publish(2)
+		light2.publish(1)
+		move_cmd.linear.x = 0
+		move_cmd.angular.z = 1
+		while(time.time() < time_move):
+			move.publish(move_cmd)
+		light.publish(3)
+		light2.publish(2)
+		move_cmd.linear.x = -0.2
+		move_cmd.linear.z = 0.5
+		while(time.time() < time_move):
+			move.publish(move_cmd)
+		time_move = time.time() + 2
+		move_cmd.angular.z = -1.5
+		light.publish(1)
+		light2.publish(3)
+		while(time.time() < time_move):
+			move.publish(move_cmd)
+		light.publish(0)
+		light2.publish(0)
+		noise.publish(6)
 	elif (symbol == 'A') :
-		move_cmd.linear.x = -0.2
-		move_cmd.angular.z = 0
 		print("Avoid!")
+		move_cmd.linear.x = -0.3
+		move_cmd.angular.z = 0
+		noise.publish(4)
+		light.publish(3)
 		time_move = time.time() + 3
 		while(time.time() < time_move):
 			move.publish(move_cmd)
+		noise.publish(4)
+		light.publish(0)
 	elif (symbol == 'bolt') :
-		move_cmd.linear.x = 0.2
+		print("bolt!")	
+		noise.publish(3)
+		noise.publish(3)
+		light.publish(2)	
+		move_cmd.linear.x = 0.3
 		move_cmd.angular.z = 0
-		print("bolt!")
+		noise.publish(3)
+		light.publish(2)
+
 	#print(data)
 	#print(number)
 	
@@ -84,8 +156,7 @@ def shutdown():
 
 
 rospy.init_node("test_events")
-light = rospy.Publisher('/mobile_base/commands/led1', Led, queue_size=10)
-noise = rospy.Publisher('/mobile_base/commands/sound', Sound, queue_size=10)
+#moved light and noise
 move = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
 rospy.Subscriber("symbols",String,symbolCallback)
 #rospy.Subscriber("faces",Int32)
