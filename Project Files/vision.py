@@ -89,11 +89,7 @@ faceCascade = cv2.CascadeClassifier(cascPath)
 
 class image_converter:
 
-   
-    
     def __init__(self):
-
-
 
         self.image_pub = rospy.Publisher("cv_image",Image, queue_size=10)
         self.face_pub = rospy.Publisher("faces",Int32, queue_size=10)
