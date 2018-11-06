@@ -2,7 +2,7 @@
 
 '''
 rotates the robot towards a face location provided by the camera
-Multiple faces result in the robot being immobile
+
 if the robot senses a colision while rotating it backs up
 '''
 
@@ -53,17 +53,17 @@ def BumperEventCallback(data):
 def faceCallback(data):
 	number = data.data
 	if (number > 350) :
-		move_cmd.linear.x = 0.1
+		move_cmd.linear.x = 0
 		move_cmd.angular.z = -0.5
-		print("turning left!")
+		#print("turning left!")
 	elif (number <= 150) :
-		move_cmd.linear.x = 0.1
+		move_cmd.linear.x = 0
 		move_cmd.angular.z = 0.5
-		print("turning right!")
+		#print("turning right!")
 	else:
 		move_cmd.linear.x = 0
 		move_cmd.angular.z = 0
-		print("Stationary!")
+		#print("Stationary!")
 	print(data)
 	print(number)
 	move.publish(move_cmd)
