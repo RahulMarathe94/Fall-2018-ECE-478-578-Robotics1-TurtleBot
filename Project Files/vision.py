@@ -24,7 +24,10 @@ global lowerBound, upperBound
 lowerBound=numpy.array([33,80,40])
 upperBound=numpy.array([102,255,255])
 
-
+found = (0,0,0,0,0,0)
+found = list(found)
+names = ("moon", "spin", "C", "bolt", "A", "H")
+names = list(names)
 
 #load and mask templates
 #crecent shape
@@ -95,16 +98,14 @@ class image_converter:
         self.image_pub = rospy.Publisher("cv_image",Image, queue_size=10)
         self.face_pub = rospy.Publisher("faces",Int32, queue_size=10)
         self.loc_pub = rospy.Publisher("face_location", Int32, queue_size=10)  
+        self.symbol_pub = rospy.Publisher("symbols", String, queue_size=10)  
         #self.image_pub = rospy.Publisher("gray_image", Image, queue_size=10)
 
         self.bridge = CvBridge()
         self.image_sub = rospy.Subscriber("/camera/rgb/image_raw",Image,self.callback)
 
     def callback(self,data):
-        found = (0,0,0,0,0,0)
-        found = list(found)
-        names = ("moon", "spin", "C", "bolt", "A", "H")
-        names = list(names)
+        global found, names
         try:
             cv_image = self.bridge.imgmsg_to_cv2(data, "bgr8")
         except CvBridgeError as e:
@@ -201,8 +202,9 @@ class image_converter:
         #To know we have a match for sure we check if we've seen item 50 times
         #this also prevents the log from being spammed with 500 outputs
         largest = max(found)
-        if(largest > 50):
+        if(largest > 10):
             print("we found: ", names[found.index(largest)])
+            self.symbol_pub.publish(names[found.index(largest)])
             found = (0,0,0,0,0,0)
             found = list(found)     
         
