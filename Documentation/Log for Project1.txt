@@ -1,0 +1,89 @@
+Log
+10/9/18
+Jennifer received the locker for our project which also included a computer to run ROS
+
+10/11/18
+We have installed Ubuntu 16 on the school computer, but SSH is not working yet. 
+
+10/11/18
+Kanna got SSH working on the robot computer with the help of the TA. The issue was that SSH server was not installed by default. SSH functionality was verified by Rahul using a phone application to connect.
+
+10/18/18
+We attended a lecture on ROS mainly going over rostopics and publishing/subscribing to rostopics.
+
+10/20/18
+Turtlebot teleop program is now running, so we know that ROS kinetic works with the Turtlebot. The camera is non-functional however. We suspect that it requires a specific driver, but it’s difficult to determine what the driver is without the name of the camera
+
+10/25/18
+Today we attended a lecture on operating the dynamixel servos
+Camera was identified as an Astra Orbbec 3D pro. The Turtlebot camera drivers are now installed and the camera is functional. In addition to a standard RGB camera output, the camera also includes a depth sensor which can be visualized using ROS’ built in vision program RVIS.
+
+Camera driver downloaded from: https://orbbec3d.com/develop/
+
+To run camera:
+//Launch Turtlebot
+roslaunch turtlebot_bringup minimal.launch
+
+//Launch Camera
+roslaunch  astra_launch astra.launch
+
+
+//View camera images
+roslaunch turtlebot_rviz_launchers view_robot.launch --screen
+
+rosrun image_view image_view image:=/camera/rgb/image_raw
+
+10/28/18
+Opencv has been installed on the computer. A functional facial detection program is on the computer, but is hasn’t been integrated into ROS yet. To integrate the OpenCV program with ROS, cv_bridge must be used. This is because ROS is RGB and OpenCV is BGR. http://wiki.ros.org/cv_bridge/Tutorials/ConvertingBetweenROSImagesAndOpenCVImagesPython
+http://wiki.ros.org/vision_opencv
+
+
+10/29/18
+Lauren wrote a program to practice with rostopics. Code moves robot forward until it hits something then backs robot up, turns, and keeps driving. This can be used later for the directional movement of the robot once we have rostopics being published.
+
+10/30/2018
+Lauren has written OpenCV code attempting to detect arrows and what direction they are pointed in. Code utilizes the goodFeaturesToTrack() function to distinguish points on the arrow. From there, the back two points are used to determine which direction the arrow is pointed in. The program currently only works using still, cropped images of arrows, but will hopefully be able to be integrated into a real time system for giving robot directional orders. Program only works when if the robot knows that its receiving an arrow. 
+
+The idea behind this code used this project as a base, but no code was taken from it. http://cstwiki.wtb.tue.nl/index.php?title=Embedded_Motion_Control_2013_Group_11#Camera_Node
+
+Interesting take on it that might make it easier is to mask out everything but the color of the arrow and then use edge and corner detection on that shape to recognize the arrow. 
+https://stackoverflow.com/questions/23898981/arrow-recognition-in-video
+
+https://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/
+
+10/31/2018
+Face detection program has been converted to work with ROS. Camera detects faces and follows them to center the face. Jennifer changed servos to ID matching the stickers they have. We’re having trouble testing the servos to see if they work with Melih’s package sent to us for servos. 
+
+After reading up on symbol detection, it seems like matchtemplate() might be a good function to use. The only issue is that the templates are bound by scale so we would need to iterate over multiple scales of our templates to find what we want. It also has the drawback of being orientation specific, meaning that if the image is tilted it could miss a symbol being given. We can try to cheat this by just holding the image steady.
+
+https://www.pyimagesearch.com/2015/01/26/multi-scale-template-matching-using-python-opencv/
+
+Two sign detector programs:
+https://github.com/Corey255A1/BasicPythonOpenCVTemplateMatch/blob/master/SignDetector/SignDetector.py
+
+https://github.com/nikgens/TankRobotProject/blob/master/signRecognition/signRecognition.py
+
+Publication comparing symbol recognition algorithms:
+https://publications.cms.bgu.tum.de/theses/2018_Stoitchkov_Vilgertshofer.pdf
+
+Cascade classification sounds like the most accurate, but it requires training with thousands of images. A good compromise would be contour detection. The major issue with contour detection is the lack of recognition if the object is being touched by another object, but if the symbol is on a sheet of paper then it should be easily distinguishable.
+
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_contours/py_contours_begin/py_contours_begin.html
+
+https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_contours/py_contours_more_functions/py_contours_more_functions.html?highlight=matchshapes
+
+Haar classifier facial detection paper
+
+10/31/2018 - 11/5/2018
+Intense robot work
+
+11/5/2018
+
+Code was migrated to the new board. Servos are now working. The issue was that the number of servos was miscounted and so the controller was confused.
+
+Symbol detection is working though sensitivity may need to be turned up for the demonstration
+
+11/6/2018
+Our team presented our powerpoint and the 
+The second computer given doesn’t work anymore, had to redownload all the files again onto a team members personal computer. 
+
